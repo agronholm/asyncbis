@@ -1,0 +1,64 @@
+[build-system]
+requires = [
+    "setuptools >= 77",
+    "setuptools_scm[toml] >= 6.4"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asyncbis"
+description = "An asyncio wrapper that adds level cancellation and stricter structured concurrency"
+readme = "README.rst"
+authors = [{name = "Alex Grönholm", email = "alex.gronholm@nextday.fi"}]
+license = "MIT"
+keywords = ["asyncio"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Typing :: Typed",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+]
+requires-python = ">= 3.10"
+dependencies = [
+    "typing_extensions; python_version < '3.12'",
+    "exceptiongroup; python_version < '3.11'",
+]
+dynamic = ["version"]
+
+[project.urls]
+"Source Code" = "https://github.com/agronholm/asyncbis"
+"Issue Tracker" = "https://github.com/agronholm/asyncbis/issues"
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "dirty-tag"
+
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.lint]
+extend-select = [
+    "C4",           # flake8-comprehensions
+    "I",            # isort
+    "ISC",          # flake8-implicit-str-concat
+    "PERF",         # flake8-performance
+    "PGH",          # pygrep-hooks
+    "RUF100",       # unused noqa (yesqa)
+    "UP",           # pyupgrade
+    "W",            # pycodestyle warnings
+]
+ignore = ["ISC001"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["asyncbis"]
+
+[tool.mypy]
+strict = true
+files = ["src"]

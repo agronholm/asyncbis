@@ -1,0 +1,9 @@
+.idea
+.tox
+.venv
+*.so
+*.dll
+*.dylib
+*.egg-info
+/venv*
+/rust/target
